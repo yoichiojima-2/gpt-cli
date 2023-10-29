@@ -1,2 +1,0 @@
-[console_scripts]
-text-summarisation = text_summarisation.cli:entrypoint
