@@ -50,4 +50,4 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--directory", "-d", type=str)
     args = parser.parse_args()
-    ask_using_files_in_directory(args.directory)
+    main(args.directory)

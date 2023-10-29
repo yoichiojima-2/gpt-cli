@@ -5,12 +5,9 @@ from pprint import pprint
 
 def main(directory: str):
     p = Path(directory)
-
     count = {}
     for i in p.glob("*.txt"):
-        with i.open() as f:
-            count[str(i)] = len(f.read())
-
+        count[str(i)] = len(i.read_text())
     pprint(count)
 
 
