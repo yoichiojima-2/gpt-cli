@@ -2,6 +2,7 @@ from pprint import pprint
 from pathlib import Path
 from argparse import ArgumentParser
 
+
 def main(directory: str):
     p = Path(directory)
 
@@ -12,8 +13,9 @@ def main(directory: str):
 
     pprint(count)
 
+
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--directory", type = str)
+    parser.add_argument("--directory", type=str)
     args = parser.parse_args()
     main(args.directory)
