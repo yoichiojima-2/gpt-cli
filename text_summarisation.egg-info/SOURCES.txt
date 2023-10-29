@@ -1,6 +1,8 @@
 setup.py
 text_summarisation/__init__.py
 text_summarisation/_count.py
+text_summarisation/background_knowledge.py
+text_summarisation/cli.py
 text_summarisation/main.py
 text_summarisation/merge_text.py
 text_summarisation/split_text.py

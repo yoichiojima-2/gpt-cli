@@ -4,6 +4,7 @@ from pathlib import Path
 
 import openai
 from tqdm import tqdm
+from .background_knowledge import BACKGROUND_KNOWLEDGE
 
 
 def main(directory: str):
@@ -38,7 +39,7 @@ def ask_a_question(question: str) -> str:
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": Path("background_knowledge.txt").read_text()},
+            {"role": "system", "content": BACKGROUND_KNOWLEDGE},
             {"role": "user", "content": question},
         ],
     )

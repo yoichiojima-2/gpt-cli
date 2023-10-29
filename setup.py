@@ -5,5 +5,8 @@ setup(
     version="2023.10",
     packages=find_packages(),
     install_requires=["openai", "tqdm"],
-    entry_points={"console_scripts": ["text-summarisation = text_summarisation.main:main"]},
+    entry_points={"console_scripts": ["text-summarisation = text_summarisation.cli:entrypoint"]},
+    package_data={
+        'text_summarisation': ['background_knowledge.txt'],
+    }
 )
