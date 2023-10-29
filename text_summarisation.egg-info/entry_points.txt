@@ -1,0 +1,2 @@
+[console_scripts]
+text-summarisation = text_summarisation.main:main

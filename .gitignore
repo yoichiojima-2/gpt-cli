@@ -1,2 +1,6 @@
-__pycache__
-background_knowledge.txt
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/

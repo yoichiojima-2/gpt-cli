@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: text-summarisation
+Version: 2023.10
+Requires-Dist: openai
+Requires-Dist: tqdm
