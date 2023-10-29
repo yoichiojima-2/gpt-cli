@@ -27,14 +27,18 @@ def ask_using_file(file: str) -> str:
 def ask_using_files_in_directory(directory: str):
     textfiles = list(Path(directory).rglob("*.txt"))
     for i in tqdm(textfiles, total = len(textfiles), desc = "summarising..."):
-        response = ask_using_file(str(i))
         output_dir = Path(directory) / "summarised"
 
         if not output_dir.exists():
             output_dir.mkdir(parents = True, exist_ok = True)
 
         output_file =  output_dir / str(i.name)
-        output_file.write_text(response)
+
+        if not output_file.exists():
+            response = ask_using_file(str(i))
+            output_file.write_text(response)
+        else:
+            print("skipped because output file is already exists.")
 
 if __name__ == "__main__":
     parser = ArgumentParser()
