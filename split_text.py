@@ -1,6 +1,6 @@
-import os
-from pathlib import Path
 from argparse import ArgumentParser
+from pathlib import Path
+
 from tqdm import tqdm
 
 

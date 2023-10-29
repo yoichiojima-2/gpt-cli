@@ -1,12 +1,12 @@
 import re
-from pathlib import Path
 from argparse import ArgumentParser
-from tqdm import tqdm
+from pathlib import Path
 
 import openai
+from tqdm import tqdm
 
 
-def ask_using_files_in_directory(directory: str):
+def main(directory: str):
     textfiles = list(Path(directory).rglob("*.txt"))
     for i in tqdm(textfiles, total=len(textfiles), desc="summarising..."):
         output_dir = Path(directory) / "summarised"

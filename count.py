@@ -1,6 +1,6 @@
-from pprint import pprint
-from pathlib import Path
 from argparse import ArgumentParser
+from pathlib import Path
+from pprint import pprint
 
 
 def main(directory: str):
