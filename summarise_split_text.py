@@ -25,7 +25,7 @@ def ask_using_file(file: str) -> str:
     return ask_a_question('"""' + question + '"""')
 
 def ask_using_files_in_directory(directory: str):
-    textfiles = list(Path(directory).glob("*.txt"))
+    textfiles = list(Path(directory).rglob("*.txt"))
     for i in tqdm(textfiles, total = len(textfiles), desc = "summarising..."):
         response = ask_using_file(str(i))
         output_dir = Path(directory) / "summarised"
@@ -35,7 +35,6 @@ def ask_using_files_in_directory(directory: str):
 
         output_file =  output_dir / str(i.name)
         output_file.write_text(response)
-
 
 if __name__ == "__main__":
     parser = ArgumentParser()
