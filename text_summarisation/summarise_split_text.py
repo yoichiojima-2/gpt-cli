@@ -28,7 +28,7 @@ def ask_using_file(file: str) -> str:
 
 
 def ask_a_question(question: str) -> str:
-    key_file = Path().home() / "Developer/api_keys/openai.txt"
+    key_file = Path().home() / "Developer/keys/openai.txt"
 
     if not key_file.exists():
         raise FileNotFoundError("api key not found.")
