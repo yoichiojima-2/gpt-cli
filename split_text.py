@@ -28,6 +28,6 @@ def split_text_file(filepath, chunk_size=2000):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--directory", type=str)
+    parser.add_argument("--directory", "-d", type=str)
     args = parser.parse_args()
     main(args.directory)

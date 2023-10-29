@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 from argparse import ArgumentParser
+from tqdm import tqdm
 
 import openai
 
@@ -19,16 +20,25 @@ def ask_a_question(question: str) -> str:
 
     return response["choices"][0]["message"]["content"]
 
-def ask_using_file(file):
+def ask_using_file(file: str) -> str:
     question = Path(file).read_text()
     return ask_a_question('"""' + question + '"""')
+
+def ask_using_files_in_directory(directory: str):
+    textfiles = list(Path(directory).glob("*.txt"))
+    for i in tqdm(textfiles, total = len(textfiles), desc = "summarising..."):
+        response = ask_using_file(str(i))
+        output_dir = Path(directory) / "summarised"
+
+        if not output_dir.exists():
+            output_dir.mkdir(parents = True, exist_ok = True)
+
+        output_file =  output_dir / str(i.name)
+        output_file.write_text(response)
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--file", "-f", type = str)
+    parser.add_argument("--directory", "-d", type = str)
     args = parser.parse_args()
-
-    response = ask_using_file(args.file)
-
-    print(response)
+    ask_using_files_in_directory(args.directory)

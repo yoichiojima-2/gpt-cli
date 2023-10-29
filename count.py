@@ -16,6 +16,6 @@ def main(directory: str):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--directory", type=str)
+    parser.add_argument("--directory", "-d", type=str)
     args = parser.parse_args()
     main(args.directory)
