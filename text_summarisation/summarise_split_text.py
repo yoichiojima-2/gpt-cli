@@ -23,7 +23,6 @@ def main(directory: str):
         if not output_file.exists():
             response = ask_using_file(str(i))
             output_file.write_text(response)
-            sleep(61)
         else:
             print(f"{i.name} is skipped because the output file is already exists.")
 
