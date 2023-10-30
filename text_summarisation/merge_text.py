@@ -10,7 +10,7 @@ def main(directory):
 
     merged_text = "\n".join(contents)
 
-    output_dir = Path(args.directory) / "merged"
+    output_dir = Path(directory) / "merged"
     if not output_dir.exists():
         output_dir.mkdir(parents=True, exist_ok=True)
 
