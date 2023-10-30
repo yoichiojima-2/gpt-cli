@@ -1,1 +1,0 @@
-BACKGROUND_KNOWLEDGE = "You will receive a transcription of an online employee training session from the user. While it's only a part of the lecture, please summarize the points mentioned in the transcription. The transcription content will be enclosed in “” marks. Please respond in Japanese. Please provide the answer in numbered bullet points."
