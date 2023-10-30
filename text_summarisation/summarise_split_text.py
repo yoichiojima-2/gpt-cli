@@ -1,6 +1,11 @@
 import re
 from argparse import ArgumentParser
 from pathlib import Path
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_random_exponential,
+)
 
 import openai
 from tqdm import tqdm
@@ -18,6 +23,7 @@ def main(directory: str):
         if not output_file.exists():
             response = ask_using_file(str(i))
             output_file.write_text(response)
+            sleep(61)
         else:
             print(f"{i.name} is skipped because the output file is already exists.")
 
@@ -26,7 +32,7 @@ def ask_using_file(file: str) -> str:
     question = Path(file).read_text()
     return ask_a_question('"""' + question + '"""')
 
-
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
 def ask_a_question(question: str) -> str:
     key_file = Path().home() / "Developer/keys/openai.txt"
 
