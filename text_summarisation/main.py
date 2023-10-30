@@ -11,9 +11,6 @@ def main(target):
     split(target)
     summarise(target / "split")
     merge(target / "split/summarised")
-    split(target / "split/summarised/merged'")
-    summarise(target / "split/summarised/merged/split")
-    merge(target / "split/summarised/merged/split/summarised")
 
 
 if __name__ == "__main__":
