@@ -18,7 +18,7 @@ def split_text_file(filepath, chunk_size=2000):
             content[i : i + chunk_size] for i in range(0, len(content), chunk_size)
         ]
 
-    split_path = Path(file.parent / f"split/{file.stem}_split")
+    split_path = file.parent / f"split/{file.stem}_split"
     split_path.mkdir(parents=True, exist_ok=True)
 
     for idx, part in enumerate(parts):
