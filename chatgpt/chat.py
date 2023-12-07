@@ -1,14 +1,15 @@
-import os
 import re
 import openai
 import logging
+from pathlib import Path
 
 
 def authenticate():
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise EnvironmentError("OpenAI API key not found in environment variables.")
-    openai.api_key = api_key
+    key_file = Path().home() / "Developer/keys/openai.txt"
+    if not key_file.exists():
+        raise FileNotFoundError("api key not found.")
+    text = key_file.read_text()
+    openai.api_key = re.match(r'OPENAI_API_KEY="(.*)"', text).group(1)
 
 
 def fetch_answer(message: list[dict[str, str]]) -> str:
