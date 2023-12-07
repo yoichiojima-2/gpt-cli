@@ -24,20 +24,19 @@ def fetch_answer(message: list[dict[str, str]]) -> str:
 def main():
     context = []
     authenticate()
-
     try:
         while True:
             try:
                 question = input("You: ")
                 context.append({"role": "user", "content": question})
                 res = fetch_answer(context)
-                print("ChatGPT: ", res)
-                context.append({"role": "assistant", "content": res})
+                print("ChatGPT: ", res["content"], "\n")
+                context.append(dict(res))
 
                 if len(context) > 20:  # limit context size
                     context = context[-20:]
             except EOFError:
-                print("\nExiting the application. Goodbye!")
+                print("\nbye")
                 break
     except Exception as e:
         print(f"An error occurred: {e}")
