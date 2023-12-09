@@ -13,36 +13,25 @@ def authenticate():
 
 
 def fetch_answer(message: list[dict[str, str]]) -> str:
-    try:
-        response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=message)
-        return response.get("choices")[0]["message"]
-    except Exception as e:
-        logging.error(f"Error fetching answer: {e}")
-        return "Sorry, I couldn't fetch a response."
+    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=message)
+    return response.get("choices")[0]["message"]
 
 
 def main():
     context = []
     authenticate()
-    try:
-        while True:
-            try:
-                question = input("You: ")
-                context.append({"role": "user", "content": question})
-                res = fetch_answer(context)
-                print("ChatGPT: ", res["content"], "\n")
-                context.append(dict(res))
 
-                if len(context) > 20:  # limit context size
-                    context = context[-20:]
-            except EOFError:
-                print("\nbye")
-                break
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        print("Application closed.")
-
+    while True:
+        try:
+            question = input("You: ")
+            context.append({"role": "user", "content": question})
+            res = fetch_answer(context)
+            print("ChatGPT: ", res["content"], "\n")
+            context.append(dict(res))
+            if len(context) > 20:  # limit context size
+                context = context[-20:]
+        except Exception as e:
+            print("\nbye")
 
 if __name__ == "__main__":
     main()
