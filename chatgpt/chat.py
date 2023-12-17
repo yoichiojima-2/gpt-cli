@@ -1,3 +1,4 @@
+import sys
 import re
 import openai
 import logging
@@ -22,16 +23,19 @@ def main():
     authenticate()
 
     while True:
-        try:
-            question = input("You: ")
+        question = input("You: ")
+        if question == "bye":
+            sys.exit()            
+        else:
             context.append({"role": "user", "content": question})
             res = fetch_answer(context)
             print("ChatGPT: ", res["content"], "\n")
             context.append(dict(res))
+
             if len(context) > 20:  # limit context size
                 context = context[-20:]
-        except Exception as e:
-            print("\nbye")
+
 
 if __name__ == "__main__":
     main()
+
