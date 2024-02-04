@@ -1,3 +1,4 @@
+import os
 import sys
 import re
 import openai
@@ -6,11 +7,7 @@ from pathlib import Path
 
 
 def authenticate():
-    key_file = Path().home() / "Developer/keys/openai.txt"
-    if not key_file.exists():
-        raise FileNotFoundError("api key not found.")
-    text = key_file.read_text()
-    openai.api_key = re.match(r'OPENAI_API_KEY="(.*)"', text).group(1)
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def fetch_answer(message: list[dict[str, str]]) -> str:
@@ -19,8 +16,8 @@ def fetch_answer(message: list[dict[str, str]]) -> str:
 
 
 def main():
-    context = []
     authenticate()
+    context: list[dict] = []
 
     while True:
         question = input("You: ")
@@ -32,7 +29,7 @@ def main():
             print("ChatGPT: ", res["content"], "\n")
             context.append(dict(res))
 
-            if len(context) > 20:  # limit context size
+            if len(context) > 20:
                 context = context[-20:]
 
 
